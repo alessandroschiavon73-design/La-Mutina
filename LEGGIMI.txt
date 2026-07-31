@@ -1,0 +1,22 @@
+LAMUTINA — SITO VERSIONE 2
+
+COME PUBBLICARLO SU GITHUB
+1. Apri il repository del sito.
+2. Elimina o sostituisci il vecchio file index.html.
+3. Carica il nuovo file index.html contenuto in questa cartella.
+4. Conferma con "Commit changes".
+5. Dopo pochi minuti aggiorna lamutina.it.
+
+CONTENUTO
+- Pagina interamente in italiano.
+- Collezioni Easy, Premium e Custom.
+- Viste prodotto chiuso, aperto e interno refrigerante.
+- Due taglie: 71–80 mm e 81–90 mm.
+- Sezione personalizzazioni.
+- Contatti e modulo che apre una e-mail precompilata.
+- Layout adattato a smartphone.
+- Nessuna immagine o libreria esterna: basta il solo index.html.
+
+NOTA
+Le immagini sono illustrazioni provvisorie realizzate nel codice. Potranno essere
+sostituite più avanti con fotografie e rendering definitivi.
