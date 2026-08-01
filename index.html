@@ -1,368 +1,51 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lamutina — Rivestimenti naturali per il vino</title>
-  <meta name="description" content="Lamutina veste la bottiglia con juta naturale. Scopri le collezioni Easy, Premium e Custom, disponibili in due taglie.">
-  <meta name="theme-color" content="#f4efe5">
-  <style>
-    :root{
-      --bg:#f4efe5; --paper:#fffaf2; --ink:#292b22; --muted:#6f6c60;
-      --olive:#3d4632; --olive2:#566047; --jute:#c4a36a; --jute2:#dfc895;
-      --leather:#57402f; --line:rgba(41,43,34,.15); --white:#fff;
-      --shadow:0 24px 70px rgba(65,55,37,.13);
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.6}
-    body.menu-open{overflow:hidden}
-    a{color:inherit;text-decoration:none}
-    img,svg{display:block;max-width:100%}
-    button,input,textarea,select{font:inherit}
-    .container{width:min(1180px,calc(100% - 40px));margin:auto}
-    .serif,h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:400}
-    .eyebrow{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--olive);font-weight:700}
-    .section-head{max-width:760px;margin-bottom:42px}
-    .section-head h2{font-size:clamp(2.3rem,5vw,4.6rem);line-height:1.02;margin:12px 0 18px}
-    .section-head p{color:var(--muted);font-size:1.05rem;margin:0}
-    section{padding:105px 0;border-top:1px solid var(--line)}
-    header{position:sticky;top:0;z-index:30;background:rgba(244,239,229,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-    nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:30px}
-    .brand{font-family:Georgia,serif;font-size:1.3rem;letter-spacing:.18em;text-transform:uppercase}
-    .brand b{font-weight:400;color:var(--olive)}
-    .nav-links{display:flex;gap:26px;align-items:center;font-size:.9rem;color:var(--muted)}
-    .nav-links a:hover{color:var(--ink)}
-    .nav-cta{border:1px solid var(--olive);padding:10px 16px;color:var(--olive)!important}
-    .menu-btn{display:none;border:0;background:none;font-size:1.6rem}
-    .hero{min-height:calc(100vh - 74px);display:grid;grid-template-columns:1.02fr .98fr;gap:65px;align-items:center;padding-top:65px;padding-bottom:75px}
-    h1{font-size:clamp(3.4rem,7.5vw,7.2rem);line-height:.94;margin:15px 0 27px;letter-spacing:-.035em}
-    .lead{font-size:1.18rem;color:var(--muted);max-width:620px}
-    .actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:32px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 21px;border:1px solid var(--olive);transition:.2s;cursor:pointer;background:transparent}
-    .btn:hover{transform:translateY(-2px)}
-    .btn.primary{background:var(--olive);color:white}
-    .hero-card{position:relative;min-height:620px;border-radius:3px;overflow:hidden;box-shadow:var(--shadow);background:linear-gradient(145deg,#d4bd91,#efe4d0 52%,#9d8a6e)}
-    .hero-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 68% 22%,rgba(255,255,255,.65),transparent 30%),linear-gradient(180deg,transparent 70%,rgba(51,42,29,.16))}
-    .table-line{position:absolute;left:0;right:0;bottom:65px;height:3px;background:rgba(62,50,34,.25)}
-    .bottle{position:absolute;left:50%;top:49%;transform:translate(-50%,-50%);width:145px;height:410px;border-radius:34px 34px 19px 19px;background:linear-gradient(90deg,#20271d,#47543d 47%,#1e241b);box-shadow:10px 25px 35px rgba(20,20,15,.26)}
-    .bottle:before{content:"";position:absolute;width:58px;height:120px;left:44px;top:-92px;border-radius:10px 10px 0 0;background:inherit}
-    .bottle:after{content:"LAMUTINA";position:absolute;left:50%;top:28%;transform:translateX(-50%);color:#d4c6a9;font:12px Georgia;letter-spacing:.16em}
-    .jute-wrap{position:absolute;left:50%;top:62%;transform:translate(-50%,-50%);width:260px;height:210px;border-radius:8px;background-color:var(--jute);background-image:repeating-linear-gradient(0deg,rgba(100,71,35,.12) 0 2px,transparent 2px 5px),repeating-linear-gradient(90deg,rgba(100,71,35,.1) 0 2px,transparent 2px 5px);box-shadow:0 18px 35px rgba(43,34,21,.23)}
-    .jute-wrap:before,.jute-wrap:after{content:"";position:absolute;left:0;right:0;height:10px;background:var(--leather)}
-    .jute-wrap:before{top:0}.jute-wrap:after{bottom:0}
-    .logo-mark{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);font:17px Georgia;color:#303428;letter-spacing:.18em;white-space:nowrap}
-    .strap{position:absolute;width:76px;height:19px;right:-42px;background:var(--leather);border-radius:2px}
-    .strap.s1{top:42px}.strap.s2{top:94px}.strap.s3{top:146px}
-    .hero-note{position:absolute;right:22px;bottom:20px;background:rgba(255,250,242,.88);padding:12px 15px;font-size:.79rem;max-width:210px}
-    .intro-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:70px}
-    .intro-copy{font-size:clamp(1.5rem,3vw,2.6rem);line-height:1.25;font-family:Georgia,serif;margin:0}
-    .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
-    .pillar{border-top:1px solid var(--line);padding-top:18px}
-    .pillar strong{font-family:Georgia,serif;font-size:1.25rem;font-weight:400;display:block;margin-bottom:7px}
-    .pillar span{color:var(--muted);font-size:.94rem}
-    .products{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-    .product-card{background:var(--paper);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column}
-    .product-visual{height:330px;position:relative;background:linear-gradient(145deg,#dfcfb1,#f4ead9);overflow:hidden}
-    .product-visual.dark{background:linear-gradient(145deg,#94826b,#d5c4a6)}
-    .product-visual.custom{background:linear-gradient(145deg,#8c947b,#d9d0b5)}
-    .mini-bottle{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);width:84px;height:220px;border-radius:20px 20px 10px 10px;background:linear-gradient(90deg,#253020,#506047,#20291c)}
-    .mini-bottle:before{content:"";position:absolute;width:34px;height:62px;left:25px;top:-48px;background:inherit;border-radius:6px 6px 0 0}
-    .mini-wrap{position:absolute;left:50%;top:62%;transform:translate(-50%,-50%);width:158px;height:124px;border-radius:5px;background-color:var(--jute);background-image:repeating-linear-gradient(0deg,rgba(100,71,35,.12) 0 2px,transparent 2px 5px),repeating-linear-gradient(90deg,rgba(100,71,35,.1) 0 2px,transparent 2px 5px)}
-    .premium .mini-wrap{border-top:8px solid var(--leather);border-bottom:8px solid var(--leather)}
-    .mini-wrap:after{content:"LAMUTINA";position:absolute;inset:0;display:grid;place-items:center;font:11px Georgia;letter-spacing:.15em}
-    .custom .mini-wrap:after{content:"IL TUO LOGO";background:rgba(255,255,255,.08)}
-    .product-body{padding:27px;display:flex;flex-direction:column;flex:1}
-    .product-body h3{font-size:2rem;margin:0 0 10px}
-    .product-body p{color:var(--muted);margin:0 0 22px}
-    .specs{list-style:none;margin:auto 0 0;padding:0;border-top:1px solid var(--line)}
-    .specs li{display:flex;justify-content:space-between;gap:15px;padding:10px 0;border-bottom:1px solid var(--line);font-size:.87rem}
-    .specs span{color:var(--muted)}
-    .detail-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 25px}
-    .tab{border:1px solid var(--line);background:transparent;padding:10px 15px;cursor:pointer}
-    .tab.active{background:var(--olive);color:#fff;border-color:var(--olive)}
-    .detail-stage{background:var(--paper);border:1px solid var(--line);min-height:480px;display:grid;grid-template-columns:1.15fr .85fr;overflow:hidden}
-    .stage-art{position:relative;min-height:480px;background:linear-gradient(145deg,#dfcda9,#f2e8d5)}
-    .stage-copy{padding:45px;display:flex;flex-direction:column;justify-content:center}
-    .stage-copy h3{font-size:2.4rem;margin:0 0 14px}
-    .stage-copy p{color:var(--muted)}
-    .stage-copy ul{padding-left:18px;color:var(--muted)}
-    .view{display:none}.view.active{display:contents}
-    .flat-wrap{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(80%,430px);height:245px;background-color:var(--jute);background-image:repeating-linear-gradient(0deg,rgba(100,71,35,.12) 0 2px,transparent 2px 5px),repeating-linear-gradient(90deg,rgba(100,71,35,.1) 0 2px,transparent 2px 5px);border-top:10px solid var(--leather);border-bottom:10px solid var(--leather);box-shadow:var(--shadow)}
-    .flat-wrap .fstrap{position:absolute;right:-78px;width:95px;height:24px;background:var(--leather)}
-    .flat-wrap .f1{top:34px}.flat-wrap .f2{top:100px}.flat-wrap .f3{top:166px}
-    .inside-panel{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(82%,450px);height:270px;background:#deded8;border:10px solid #b69662;box-shadow:var(--shadow);padding:28px}
-    .gel{height:100%;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr);gap:7px}
-    .cell{border:1px solid #8e9d9e;background:linear-gradient(145deg,#edf6f5,#a7c2c3);border-radius:10px;display:grid;place-items:center;color:#586b6b;font-size:.7rem}
-    .elastic{position:absolute;top:18px;bottom:18px;width:8px;background:#555;opacity:.85}
-    .e1{left:28%}.e2{left:50%}.e3{left:72%}
-    .sizes{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-    .size-card{background:var(--paper);border:1px solid var(--line);padding:30px}
-    .size-num{font-family:Georgia,serif;font-size:3rem;line-height:1}
-    .size-card h3{font-size:1.5rem;margin:15px 0 8px}
-    .size-card p{color:var(--muted);margin:0}
-    .size-drawing{height:170px;margin-top:25px;display:flex;align-items:end;justify-content:center;gap:28px;border-bottom:1px solid var(--line)}
-    .size-bottle{width:62px;background:linear-gradient(90deg,#253020,#506047,#20291c);border-radius:15px 15px 6px 6px;position:relative}
-    .size-bottle:before{content:"";position:absolute;left:20px;top:-34px;width:22px;height:40px;background:inherit}
-    .small{height:118px}.large{height:138px;width:72px}
-    .custom-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-    .swatches{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .swatch{aspect-ratio:1;border:1px solid var(--line);display:grid;place-items:end;padding:12px;font-size:.75rem;background:var(--paper)}
-    .swatch:before{content:"";width:65%;height:65%;border-radius:50%;background:var(--jute);display:block}
-    .swatch:nth-child(2):before{background:#8c826e}.swatch:nth-child(3):before{background:#3f4b37}
-    .swatch:nth-child(4):before{background:#7b2f28}.swatch:nth-child(5):before{background:#2f3130}.swatch:nth-child(6):before{background:#ded3b6}
-    .contact-section{background:var(--olive);color:white}
-    .contact-section .eyebrow{color:#d9c69f}
-    .contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px}
-    .contact-grid h2{font-size:clamp(2.5rem,5vw,4.8rem);line-height:1;margin:12px 0 20px}
-    .contact-grid p{color:rgba(255,255,255,.72)}
-    .contact-details{margin-top:30px}
-    .contact-details a{display:block;margin:8px 0}
-    form{background:var(--paper);color:var(--ink);padding:32px}
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px}
-    .field{display:flex;flex-direction:column;gap:7px}
-    .field.full{grid-column:1/-1}
-    label{font-size:.8rem;text-transform:uppercase;letter-spacing:.09em}
-    input,select,textarea{width:100%;padding:13px;border:1px solid var(--line);background:#fffdf8;color:var(--ink)}
-    textarea{min-height:120px;resize:vertical}
-    .form-note{font-size:.75rem;color:var(--muted);margin:12px 0 0}
-    footer{padding:35px 0;color:var(--muted);font-size:.84rem}
-    .footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-    @media(max-width:900px){
-      .hero,.intro-grid,.detail-stage,.custom-grid,.contact-grid{grid-template-columns:1fr}
-      .products{grid-template-columns:1fr}.pillars{grid-template-columns:1fr}
-      .hero{padding-top:50px}.hero-card{min-height:520px}
-      .stage-copy{padding:30px}.stage-art{min-height:420px}
-    }
-    @media(max-width:680px){
-      .container{width:min(100% - 26px,1180px)}
-      section{padding:75px 0}
-      .menu-btn{display:block}
-      .nav-links{position:fixed;left:0;right:0;top:74px;background:var(--bg);padding:28px;display:none;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}
-      .nav-links.open{display:flex}
-      .hero-card{min-height:440px}.bottle{transform:translate(-50%,-50%) scale(.8)}.jute-wrap{transform:translate(-50%,-50%) scale(.8)}
-      .sizes,.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}
-      h1{font-size:3.7rem}
-    }
-  </style>
-</head>
-<body>
-<header>
-  <div class="container">
-    <nav>
-      <a class="brand" href="#home"><b>L</b>amutina</a>
-      <button class="menu-btn" aria-label="Apri menu" onclick="toggleMenu()">☰</button>
-      <div class="nav-links" id="navLinks">
-        <a href="#progetto">Il progetto</a>
-        <a href="#prodotti">Prodotti</a>
-        <a href="#dettagli">Com'è fatto</a>
-        <a href="#taglie">Taglie</a>
-        <a href="#custom">Custom</a>
-        <a class="nav-cta" href="#contatti">Contatti</a>
-      </div>
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>La Mutina — Design naturale per il vino</title><meta name="description" content="Rivestimenti naturali e refrigeranti per bottiglie di vino, personalizzabili per cantine, ristoranti ed enoteche."><link rel="stylesheet" href="style.css"></head><body>
+<header class="header">
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="La Mutina home">
+      <span class="monogram">LM</span>
+      <span class="brand-copy"><strong>LA MUTINA</strong><span>Natural design for wine</span></span>
+    </a>
+    <button class="menu-btn" aria-label="Apri menu" aria-expanded="false">☰</button>
+    <nav class="nav-links" aria-label="Navigazione principale">
+      <a href="index.html" data-nav="home" class="active">Home</a>
+      <a href="prodotti.html" data-nav="prodotti">Prodotti</a>
+      <a href="custom.html" data-nav="custom">Personalizzazioni</a>
+      <a href="chi-siamo.html" data-nav="chi-siamo">Chi siamo</a>
+      <a href="contatti.html" data-nav="contatti">Contatti</a>
     </nav>
   </div>
-</header>
-
-<main>
-  <section id="home" style="border-top:0;padding-top:0;padding-bottom:0">
-    <div class="container hero">
-      <div>
-        <div class="eyebrow">Design naturale per il vino</div>
-        <h1>La bottiglia si veste di natura.</h1>
-        <p class="lead">Lamutina è il rivestimento riutilizzabile in juta che valorizza la bottiglia, protegge la tavola e, nella versione refrigerante, aiuta a mantenere il vino alla temperatura ideale.</p>
-        <div class="actions">
-          <a class="btn primary" href="#prodotti">Scopri la collezione</a>
-          <a class="btn" href="#contatti">Richiedi informazioni</a>
-        </div>
-      </div>
-      <div class="hero-card" aria-label="Rivestimento Lamutina applicato a una bottiglia">
-        <div class="table-line"></div><div class="bottle"></div>
-        <div class="jute-wrap"><span class="logo-mark">LAMUTINA</span><i class="strap s1"></i><i class="strap s2"></i><i class="strap s3"></i></div>
-        <div class="hero-note">Immagine concettuale. Il design definitivo è in fase di prototipazione.</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="progetto">
-    <div class="container">
-      <div class="intro-grid">
-        <div><div class="eyebrow">L'idea</div></div>
-        <p class="intro-copy">Un oggetto semplice e materico, progettato per accompagnare il servizio del vino con eleganza, funzionalità e minore utilizzo di soluzioni usa e getta.</p>
-      </div>
-      <div class="pillars">
-        <div class="pillar"><strong>Juta naturale</strong><span>Una superficie calda, riconoscibile e piacevole al tatto.</span></div>
-        <div class="pillar"><strong>Riutilizzabile</strong><span>Progettato per un uso ripetuto in casa, al ristorante e in cantina.</span></div>
-        <div class="pillar"><strong>Progettato in Italia</strong><span>Forma, proporzioni e dettagli studiati per il servizio contemporaneo.</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="prodotti">
-    <div class="container">
-      <div class="section-head">
-        <div class="eyebrow">La collezione</div>
-        <h2>Easy, Premium, Custom.</h2>
-        <p>Tre interpretazioni dello stesso principio: vestire la bottiglia e renderla parte della tavola.</p>
-      </div>
-      <div class="products">
-        <article class="product-card easy">
-          <div class="product-visual"><div class="mini-bottle"></div><div class="mini-wrap"></div></div>
-          <div class="product-body">
-            <h3>Easy</h3>
-            <p>La versione essenziale in juta naturale, con bordi risvoltati e chiusura regolabile in materiale naturale.</p>
-            <ul class="specs">
-              <li><span>Stile</span><b>Essenziale</b></li><li><span>Finiture</span><b>Naturali</b></li><li><span>Uso</span><b>Casa e tavola</b></li>
-            </ul>
-          </div>
-        </article>
-        <article class="product-card premium">
-          <div class="product-visual dark"><div class="mini-bottle"></div><div class="mini-wrap"></div></div>
-          <div class="product-body">
-            <h3>Premium</h3>
-            <p>Juta selezionata, bordature e fasce esterne coordinate per una presenza più elegante e strutturata.</p>
-            <ul class="specs">
-              <li><span>Stile</span><b>Raffinato</b></li><li><span>Finiture</span><b>Premium</b></li><li><span>Uso</span><b>Ristorazione</b></li>
-            </ul>
-          </div>
-        </article>
-        <article class="product-card custom">
-          <div class="product-visual custom"><div class="mini-bottle"></div><div class="mini-wrap"></div></div>
-          <div class="product-body">
-            <h3>Custom</h3>
-            <p>Logo, colori e dettagli personalizzati per cantine, ristoranti, enoteche, eventi e confezioni regalo.</p>
-            <ul class="specs">
-              <li><span>Logo</span><b>Personalizzato</b></li><li><span>Colori</span><b>Su progetto</b></li><li><span>Uso</span><b>B2B ed eventi</b></li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="dettagli">
-    <div class="container">
-      <div class="section-head">
-        <div class="eyebrow">Com'è fatto</div>
-        <h2>Chiuso, aperto, all'interno.</h2>
-        <p>Seleziona una vista per scoprire il principio costruttivo del prodotto.</p>
-      </div>
-      <div class="detail-tabs">
-        <button class="tab active" onclick="showView('closed',this)">Prodotto chiuso</button>
-        <button class="tab" onclick="showView('open',this)">Prodotto aperto</button>
-        <button class="tab" onclick="showView('inside',this)">Interno refrigerante</button>
-      </div>
-      <div class="detail-stage">
-        <div class="view active" id="view-closed">
-          <div class="stage-art"><div class="mini-bottle" style="transform:translate(-50%,-50%) scale(1.55)"></div><div class="mini-wrap" style="transform:translate(-50%,-50%) scale(1.55);border-top:8px solid var(--leather);border-bottom:8px solid var(--leather)"></div></div>
-          <div class="stage-copy"><h3>Avvolge la bottiglia</h3><p>La forma si adatta al diametro e viene bloccata dalle fasce esterne, lasciando il fronte ordinato e riconoscibile.</p><ul><li>Chiusura regolabile</li><li>Logo visibile al centro</li><li>Buona stabilità durante il servizio</li></ul></div>
-        </div>
-        <div class="view" id="view-open">
-          <div class="stage-art"><div class="flat-wrap"><i class="fstrap f1"></i><i class="fstrap f2"></i><i class="fstrap f3"></i><span class="logo-mark">LAMUTINA</span></div></div>
-          <div class="stage-copy"><h3>Si apre completamente</h3><p>Il rivestimento diventa piatto per essere pulito, riposto e predisposto con facilità per il servizio successivo.</p><ul><li>Tre fasce di chiusura</li><li>Sovrapposizione regolabile</li><li>Struttura semplice e manutenzionabile</li></ul></div>
-        </div>
-        <div class="view" id="view-inside">
-          <div class="stage-art"><div class="inside-panel"><div class="gel"><div class="cell">Gel</div><div class="cell">Gel</div><div class="cell">Gel</div><div class="cell">Gel</div><div class="cell">Gel</div><div class="cell">Gel</div><div class="cell">Gel</div><div class="cell">Gel</div></div><i class="elastic e1"></i><i class="elastic e2"></i><i class="elastic e3"></i></div></div>
-          <div class="stage-copy"><h3>Inserto refrigerante flessibile</h3><p>Le celle distribuiscono il gel e aiutano il rivestimento a seguire la curvatura della bottiglia. Tre elastici mantengono l'inserto in posizione.</p><ul><li>Gel estraibile</li><li>Struttura a celle flessibili</li><li>Superficie interna anticondensa in sviluppo</li></ul></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="taglie">
-    <div class="container">
-      <div class="section-head">
-        <div class="eyebrow">Due taglie</div>
-        <h2>Per le forme più diffuse.</h2>
-        <p>Due misure progettate per adattarsi a differenti diametri e proporzioni di bottiglia.</p>
-      </div>
-      <div class="sizes">
-        <article class="size-card">
-          <div class="size-num">01</div><h3>Taglia 71–80 mm</h3>
-          <p>Indicata per bottiglie con diametro compreso tra 71 e 80 mm. Altezza indicativa del rivestimento: 170 mm.</p>
-          <div class="size-drawing"><div class="size-bottle small"></div><div class="size-bottle" style="height:126px;width:66px"></div></div>
-        </article>
-        <article class="size-card">
-          <div class="size-num">02</div><h3>Taglia 81–90 mm</h3>
-          <p>Indicata per bottiglie con diametro compreso tra 81 e 90 mm. Altezza indicativa del rivestimento: 150 mm.</p>
-          <div class="size-drawing"><div class="size-bottle large"></div><div class="size-bottle" style="height:125px;width:78px"></div></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="custom">
-    <div class="container custom-grid">
-      <div>
-        <div class="eyebrow">Per aziende e professionisti</div>
-        <div class="section-head" style="margin-bottom:0"><h2>Il tuo marchio sulla tavola.</h2><p>La versione Custom può essere sviluppata con logo, tonalità, fasce e confezione coordinati all'identità del cliente.</p></div>
-        <div class="actions"><a class="btn primary" href="#contatti">Parliamo del tuo progetto</a></div>
-      </div>
-      <div class="swatches">
-        <div class="swatch">Juta naturale</div><div class="swatch">Tortora</div><div class="swatch">Oliva</div>
-        <div class="swatch">Bordeaux</div><div class="swatch">Antracite</div><div class="swatch">Sabbia</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contatti" class="contact-section">
-    <div class="container contact-grid">
-      <div>
-        <div class="eyebrow">Contatti</div><h2>Porta Lamutina sulla tua tavola.</h2>
-        <p>Il progetto è in fase di sviluppo. Scrivici per informazioni, campioni, collaborazioni o personalizzazioni per la tua attività.</p>
-        <div class="contact-details">
-          <a href="mailto:info@lamutina.it">info@lamutina.it</a>
-          <a href="https://www.lamutina.it">www.lamutina.it</a>
-          <span>Padova · Italia</span>
-        </div>
-      </div>
-      <form onsubmit="sendMail(event)">
-        <div class="form-grid">
-          <div class="field"><label for="name">Nome e cognome</label><input id="name" required></div>
-          <div class="field"><label for="company">Azienda</label><input id="company"></div>
-          <div class="field"><label for="email">E-mail</label><input id="email" type="email" required></div>
-          <div class="field"><label for="interest">Interesse</label><select id="interest"><option>Easy</option><option>Premium</option><option>Custom</option><option>Collaborazione commerciale</option><option>Altro</option></select></div>
-          <div class="field full"><label for="message">Messaggio</label><textarea id="message" required placeholder="Raccontaci cosa stai cercando..."></textarea></div>
-          <div class="field full"><button class="btn primary" type="submit">Prepara la richiesta</button><p class="form-note">Il pulsante apre il tuo programma di posta con il messaggio già compilato. Nessun dato viene salvato dal sito.</p></div>
-        </div>
-      </form>
-    </div>
-  </section>
+</header><main>
+<section class="hero-image" aria-label="La Mutina tra inverno ed estate"><div class="hero-overlay"></div></section>
+<section class="section" id="collezione"><div class="container"><div class="intro center"><div class="eyebrow">La collezione</div><h2>Tre modi di vivere La Mutina.</h2><p class="lead">Una linea pensata per adattarsi al servizio quotidiano, alle tavole più ricercate e ai progetti personalizzati di cantine, ristoranti ed enoteche.</p></div>
+<div class="grid-3">
+<article class="product-card"><div class="product-visual"><div class="bottle"><div class="sleeve"></div></div></div><h3>Easy</h3><p>La versione essenziale in juta naturale: semplice, leggera e riutilizzabile, ideale per valorizzare la bottiglia con un gesto immediato.</p><span class="tag">Naturale e versatile</span><br><a class="link-arrow" href="easy.html">Scopri Easy →</a></article>
+<article class="product-card premium"><div class="product-visual"><div class="bottle"><div class="sleeve"></div></div></div><h3>Premium</h3><p>Finiture più ricercate, bordature eleganti e possibilità di inserto refrigerante per un servizio curato nei dettagli.</p><span class="tag">Dettagli distintivi</span><br><a class="link-arrow" href="premium.html">Scopri Premium →</a></article>
+<article class="product-card"><div class="product-visual custom-visual"><div class="custom-swatch" data-logo="La tua cantina"></div><div class="custom-swatch" data-logo="Il tuo ristorante"></div><div class="custom-swatch" data-logo="Il tuo hotel"></div></div><h3>Custom</h3><p>Logo, colori, finiture e confezione possono essere sviluppati per raccontare l’identità del tuo locale o del tuo vino.</p><span class="tag">Creato per il tuo brand</span><br><a class="link-arrow" href="custom.html">Scopri Custom →</a></article>
+</div></div></section>
+<section class="section-sm"><div class="container"><div class="features">
+<div class="feature"><div class="feature-icon">♧</div><strong>Materiali naturali</strong><span>Juta e fibre selezionate per un’estetica autentica e materica.</span></div>
+<div class="feature"><div class="feature-icon">❄</div><strong>Funzione termica</strong><span>Le versioni Cool possono accogliere un inserto gel flessibile.</span></div>
+<div class="feature"><div class="feature-icon">↻</div><strong>Riutilizzabile</strong><span>Progettata per accompagnare più servizi e ridurre l’usa e getta.</span></div>
+<div class="feature"><div class="feature-icon">✎</div><strong>Personalizzabile</strong><span>Logo, bordature e dettagli coordinati all’identità del cliente.</span></div>
+</div></div></section>
+<section class="split"><div class="split-image" style="background-image:url('assets/juta-dettaglio.jpg')"></div><div class="split-copy"><div class="eyebrow">Chi siamo</div><h2>Dal materiale nasce il carattere.</h2><p>La Mutina nasce dall’incontro tra cultura del vino, attenzione ai materiali naturali e ricerca di una funzione concreta. Il progetto vuole trasformare un semplice rivestimento in un elemento riconoscibile del servizio.</p><p>Stiamo sviluppando la collezione insieme a produttori specializzati, ristoratori e professionisti del vino, testando forme, finiture e soluzioni refrigeranti.</p><a class="btn" href="chi-siamo.html">La nostra storia</a></div></section>
+<section class="split"><div class="split-copy olive"><div class="eyebrow">Sostenibilità</div><h2>Più utilizzi, meno sprechi.</h2><p>La scelta della juta, la possibilità di sostituire l’inserto refrigerante e la progettazione orientata alla durata nascono da un principio semplice: creare un prodotto bello da usare e pensato per restare.</p><a class="btn" href="chi-siamo.html#sostenibilita">Il nostro impegno</a></div><div class="split-image" style="background-image:url('assets/natura.jpg')"></div></section>
 </main>
-
-<footer>
-  <div class="container footer-row">
-    <span>© 2026 Lamutina. Tutti i diritti riservati.</span>
-    <span>Design naturale per il vino · Progetto in fase di sviluppo</span>
+<section class="section-sm cta">
+  <div class="container">
+    <div><div class="eyebrow" style="color:#d8c9aa">Per cantine, ristoranti ed enoteche</div><h3>Porta La Mutina sulla tua tavola.</h3><p>Richiedi informazioni sui campioni, sulle finiture e sulle personalizzazioni.</p></div>
+    <a class="btn" href="contatti.html">Contattaci</a>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="brand"><span class="monogram">LM</span><span class="brand-copy"><strong>LA MUTINA</strong><span>Natural design for wine</span></span></div><p style="margin-top:18px;max-width:320px">Accessori naturali, funzionali e riutilizzabili per valorizzare il servizio del vino.</p></div>
+      <div><h4>Collezione</h4><a href="easy.html">Easy</a><a href="premium.html">Premium</a><a href="custom.html">Custom</a></div>
+      <div><h4>Azienda</h4><a href="chi-siamo.html">Chi siamo</a><a href="chi-siamo.html#materiali">Materiali</a><a href="chi-siamo.html#sostenibilita">Sostenibilità</a></div>
+      <div><h4>Contatti</h4><a href="mailto:info@lamutina.it">info@lamutina.it</a><p>Progetto italiano</p></div>
+    </div>
+    <div class="copyright"><span>© 2026 La Mutina — Tutti i diritti riservati</span><span>Naturale. Fresca. Essenziale.</span></div>
   </div>
 </footer>
-
-<script>
-function toggleMenu(){
-  document.getElementById('navLinks').classList.toggle('open');
-  document.body.classList.toggle('menu-open');
-}
-document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>{
-  document.getElementById('navLinks').classList.remove('open');
-  document.body.classList.remove('menu-open');
-}));
-function showView(name,btn){
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('view-'+name).classList.add('active');
-  btn.classList.add('active');
-}
-function sendMail(e){
-  e.preventDefault();
-  const name=document.getElementById('name').value;
-  const company=document.getElementById('company').value;
-  const email=document.getElementById('email').value;
-  const interest=document.getElementById('interest').value;
-  const message=document.getElementById('message').value;
-  const subject=encodeURIComponent('Richiesta dal sito Lamutina — '+interest);
-  const body=encodeURIComponent('Nome: '+name+'\nAzienda: '+company+'\nE-mail: '+email+'\nInteresse: '+interest+'\n\nMessaggio:\n'+message);
-  window.location.href='mailto:info@lamutina.it?subject='+subject+'&body='+body;
-}
-</script>
-</body>
-</html>
+<script src="script.js"></script></body></html>
