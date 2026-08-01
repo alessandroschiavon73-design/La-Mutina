@@ -1,4 +1,3 @@
-
 const menuButton = document.querySelector('.menu-btn');
 const navLinks = document.querySelector('.nav-links');
 if (menuButton && navLinks) {
@@ -16,7 +15,14 @@ if (contactForm) {
     const data = new FormData(contactForm);
     const subject = encodeURIComponent(`Richiesta La Mutina — ${data.get('tipo') || 'Informazioni'}`);
     const body = encodeURIComponent(
-      `Nome: ${data.get('nome')}\nAzienda: ${data.get('azienda')}\nEmail: ${data.get('email')}\nTelefono: ${data.get('telefono')}\nInteresse: ${data.get('tipo')}\n\nMessaggio:\n${data.get('messaggio')}`
+      `Nome: ${data.get('nome')}
+Azienda: ${data.get('azienda')}
+Email: ${data.get('email')}
+Telefono: ${data.get('telefono')}
+Interesse: ${data.get('tipo')}
+
+Messaggio:
+${data.get('messaggio')}`
     );
     window.location.href = `mailto:info@lamutina.it?subject=${subject}&body=${body}`;
   });
